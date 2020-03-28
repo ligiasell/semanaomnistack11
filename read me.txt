@@ -1,0 +1,68 @@
+1. Criar pasta projeto chamada "semanaomnistack11";
+
+2. Dentro da pasta "semanaomnistack11", criar a sub-pasta chamada "backend";
+Dentro da pasta clicar com o botão direito e abrir Git Bash Here;
+No terminal do Git Bash rodar "npm init -y" (pra criar um arquivo package.json);
+No terminal do Git Bash rodar "code ." (pra abrir o projeto no Visual Code);
+No terminal do VS rodar "npm install express" (pra criar a pasta node_modules);
+
+3. No projeto dentro do VS criar o arquivo chamado "index.js"(arquivo principal do projeto);
+
+4. Para executar, no terminal do VS rodar "node index.js";
+Abrir uma abra do Chrome e ir para a url "http://localhost:3333/"
+
+5. Voltar para a pasta projeto chamada "semanaomnistack11";
+No terminal do Git Bash rodar "npx create-react-app frontend" (pra criar um projeto em React);
+No terminal do VS rodar "npm start";
+Abrir uma abra do Chrome e ir para a url "http://localhost:3000/"
+
+6. Adiciona métodos http no Insomia pra testar
+
+7. Instalar o Nodemon pra não precisar ficar reiniciando a aplicação;
+No terminal do VS  rodar "npm install nodemon -D";
+O "-D" serve para ele ser salvo no arquivo package.json como uma biblioteca de desenvolvimento;
+Adicionar no arquivo package.json: 
+"scripts": {
+    "start": "nodemon index.js"
+  },
+A partir de agora, para rodar o servidor coloco no terminal do VS "npm start";
+
+8. Instalar o Query Builder Knex;
+No terminal do VS rodar "npm install knex";
+Instalar o driver de acordo com o banco de dados que vou utilizar, o banco será o SQLite;
+No terminal do VS rodar "npm install sqlite3";
+
+9. Fazer a conexão do banco de dados com a aplicação;
+No terminal do VS rodar "npx knex init" para criar o arquivo knexfile.js onde ficam as configurações do banco de dados pra cada ambiente da aplicação;
+No arquivo knexfile.js colocar o endereço do banco de dados:
+ connection: {
+      filename: './src/database/db.sqlite',
+    },
+
+10. Criar migrações, que são as tabelas dentro do banco de dados;
+No terminal do VS rodar "npx knex migrate:make <nome da migration>". 
+Ex.: npx knex migrate:make create_ongs
+Adicionar tabelas e para rodar, no terminal do VS code rodar "npx knex migrate:latest"
+
+11. Atentar ao formato dos dado no Insominia. Ex.:
+No VS:
+routes.post('/ongs', (request, response) => {
+  const data = request.body
+  console.log('data', data) // apenas para ver no terminal
+  return response.json()
+})
+
+No Insominia:
+Post | http://localhost:3333/ongs
+JSON:
+{
+	"name": "CVV",
+	"email": "contato@cvv.com.br",
+	"whatsapp": "188",
+	"cidade": "Florianópolis",
+	"uf": "SC"
+}
+Obs.: Usar aspas duplas, último valor não tem vírgula no final!
+
+12. Instalar cors para determinar quem pode acessar a minha aplicação;
+No terminal do VS rodar "npm install cors"
