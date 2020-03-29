@@ -18,7 +18,8 @@ export default function NewIncident() {
   const history = useHistory()
 
   async function handleNewIncident(e) {
-    e.preventDefautl()
+    console.log('heres')
+    e.preventDefault()
 
     const data = {
       title,

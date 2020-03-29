@@ -99,11 +99,10 @@ const Logon = () => (
 
 3. Instalar pacote de rotas:
 No terminal do VS rodar "npm install react-router-dom";
-
 --------------------------------------------------------------------------------------------
 
 INTEGRAÇÃO: CONECTAR BACKEND COM FRONTEND
-*****************************
+*****************************************
 
 1. No terminal voltar para a pasta backend e rodar "npm start" pra iniciar o servidor;
 Para testar se está funcionando, no Insomnia mandar algo, se funcionar quer dizer que o React também vai conseguir acessar essa API.
@@ -114,6 +113,13 @@ Criar dentro da pasta src a pasta "services", dentro de "services" criar o arqui
 No services ficam todos os arquivos que que provem integração com algum serviço externo.
 
 3. Consigo olhar os detalhes da minha requisição em Inspect/Network/Headers e Preview
+--------------------------------------------------------------------------------------------
 
+VALIDAÇÃO
+*********
+
+1. Instalar a biblioteca celebrate que ajuda nas validações no back-end, para nenhum informação entrar fora do formato, se é obrigatória ou não, ou ficar vazia por exemplo.
+Vamos colocar validação nas rotas de criação e alteração;
+No terminal do VS rodar "npm install celebrate";
 
 

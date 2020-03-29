@@ -1,4 +1,7 @@
 const express = require('express')
+// celebrate para validacoes
+const { celebrate, Segments, Joi } = require('celebrate')
+
 const OngController = require('./controllers/OngController')
 const IncidentController = require('./controllers/IncidentController')
 const ProfileController = require('./controllers/ProfileController')
@@ -36,18 +39,64 @@ const routes = express.Router()
 routes.post('/sessions', SessionController.create)
 
 // No Insomnia: Ongs - GET List
-// No Insomnia: Ongs - POST Create
 routes.get('/ongs', OngController.index)
-routes.post('/ongs', OngController.create)
+
+// No Insomnia: Ongs - POST Create
+routes.post(
+  '/ongs',
+  celebrate({
+    [Segments.BODY]: Joi.object().keys({
+      name: Joi.string().required(),
+      email: Joi.string()
+        .required()
+        .email(),
+      whatsapp: Joi.number()
+        .required()
+        .min(10)
+        .max(11),
+      city: Joi.string().required(),
+      uf: Joi.string()
+        .required()
+        .length(2),
+    }),
+  }),
+  OngController.create
+)
 
 // No Insomnia: Profile - GET List
-routes.get('/profile', ProfileController.index)
+routes.get(
+  '/profile',
+  celebrate({
+    [Segments.HEADERS]: Joi.object({
+      authorization: Joi.string().required(),
+    }).unknown(),
+  }),
+  ProfileController.index
+)
 
 // No Insomnia: Casos - GET List
+routes.get(
+  '/incidents',
+  celebrate({
+    [Segments.QUERY]: Joi.object().keys({
+      page: Joi.number(),
+    }),
+  }),
+  IncidentController.index
+)
+
 // No Insomnia: Casos - POST Create
-// No Insomnia: Casos - POST Delete
-routes.get('/incidents', IncidentController.index)
 routes.post('/incidents', IncidentController.create)
-routes.delete('/incidents/:id', IncidentController.delete)
+
+// No Insomnia: Casos - POST Delete
+routes.delete(
+  '/incidents/:id',
+  celebrate({
+    [Segments.PARAMS]: Joi.object().keys({
+      id: Joi.number().required(),
+    }),
+  }),
+  IncidentController.delete
+)
 
 module.exports = routes
