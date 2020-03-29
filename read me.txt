@@ -1,3 +1,6 @@
+BACKEND
+*******
+
 1. Criar pasta projeto chamada "semanaomnistack11";
 
 2. Dentro da pasta "semanaomnistack11", criar a sub-pasta chamada "backend";
@@ -66,3 +69,51 @@ Obs.: Usar aspas duplas, último valor não tem vírgula no final!
 
 12. Instalar cors para determinar quem pode acessar a minha aplicação;
 No terminal do VS rodar "npm install cors"
+--------------------------------------------------------------------------------------------
+
+FRONTEND
+********
+
+1. No VS Code, adicionar em Preferences: Open Settings (JSON):
+"emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "emmet.syntaxProfiles": {
+    "javascript": "jsx"
+  },
+
+Ex.: div.container => <div className="logon"></div>
+Ex.: div.logon-container => <div className="logon-container"></div>
+
+2. Para os ícones, utilizar o website https://feathericons.com/
+
+3. Instalar o pacote de ícones:
+No terminal do VS rodar "npm install react-icons";
+Importo "import { } from 'react-icons/fi'" e dentro das {} dou um Ctrol + Space para ver todas as opções de ícones;
+Cada ícone também vai ser um componente. 
+
+Ex.: import { FiLogIn } from 'react-icons/fi'
+const Logon = () => (
+  <FiLogIn size={16} color="#E02041" />
+)
+
+3. Instalar pacote de rotas:
+No terminal do VS rodar "npm install react-router-dom";
+
+--------------------------------------------------------------------------------------------
+
+INTEGRAÇÃO: CONECTAR BACKEND COM FRONTEND
+*****************************
+
+1. No terminal voltar para a pasta backend e rodar "npm start" pra iniciar o servidor;
+Para testar se está funcionando, no Insomnia mandar algo, se funcionar quer dizer que o React também vai conseguir acessar essa API.
+
+2. Dentro do projeto instalar um cliente http, que é o responsável por fazer a chamada a API do  backend e obter as respostas:
+No terminal do VS rodar "npm install axios";
+Criar dentro da pasta src a pasta "services", dentro de "services" criar o arquivo "api.js";
+No services ficam todos os arquivos que que provem integração com algum serviço externo.
+
+3. Consigo olhar os detalhes da minha requisição em Inspect/Network/Headers e Preview
+
+
+
